@@ -36,8 +36,11 @@ Route::middleware('auth')->group(function (): void {
     Route::post('/anak/{child}/pengukuran/pratinjau', [MeasurementController::class, 'preview'])->name('measurements.preview');
 
     Route::get('/tindak-lanjut', [FollowUpController::class, 'index'])->name('follow-ups.index');
-    Route::post('/anak/{child}/tindak-lanjut', [FollowUpController::class, 'store'])->name('follow-ups.store');
-    Route::patch('/tindak-lanjut/{followUp}/selesai', [FollowUpController::class, 'complete'])->name('follow-ups.complete');
+
+    Route::middleware('role:kader,nakes,admin_puskesmas')->group(function (): void {
+        Route::post('/anak/{child}/tindak-lanjut', [FollowUpController::class, 'store'])->name('follow-ups.store');
+        Route::patch('/tindak-lanjut/{followUp}/selesai', [FollowUpController::class, 'complete'])->name('follow-ups.complete');
+    });
 
     Route::get('/edukasi-gizi', [NutritionController::class, 'index'])->name('nutrition.index');
 

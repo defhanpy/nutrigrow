@@ -72,9 +72,9 @@ class MeasurementController extends Controller
             'age_label' => $child->ageLabel(Carbon::parse($validated['measured_at'])),
             'overall_status' => $result['overall_status'],
             'indicators' => [
-                ['label' => 'Berat menurut usia', 'status' => $result['wfa_status'], 'z' => $result['wfa_z']],
-                ['label' => 'Tinggi menurut usia', 'status' => $result['lhfa_status'], 'z' => $result['lhfa_z']],
-                ['label' => 'Berat menurut tinggi', 'status' => $result['wfh_status'], 'z' => $result['wfh_z']],
+                ['label' => 'Berat menurut usia', 'status' => $result['wfa_status']],
+                ['label' => 'Tinggi menurut usia', 'status' => $result['lhfa_status']],
+                ['label' => 'Berat menurut tinggi', 'status' => $result['wfh_status']],
             ],
         ]);
     }

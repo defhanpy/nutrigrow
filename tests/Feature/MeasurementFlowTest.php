@@ -111,6 +111,7 @@ class MeasurementFlowTest extends TestCase
         $response->assertJsonPath('overall_status', 'Gizi Baik');
         $response->assertJsonCount(3, 'indicators');
         $response->assertJsonFragment(['label' => 'Berat menurut usia']);
+        $response->assertJsonMissingPath('indicators.0.z');
         $response->assertJsonMissingPath('indicators.0.z_score');
     }
 

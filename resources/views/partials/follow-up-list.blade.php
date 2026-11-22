@@ -14,11 +14,11 @@
                     @if ($followUp->creator) · oleh {{ $followUp->creator->name }} @endif
                 </span>
                 <p>{{ $followUp->action_plan }}</p>
-                @if ($followUp->status->value === 'pending')
+                @if ($followUp->status->value === 'pending' && ! auth()->user()->isOrangTua())
                     <form method="POST" action="{{ route('follow-ups.complete', $followUp) }}" class="mt-2">
                         @csrf
                         @method('PATCH')
-                        <button type="submit" class="btn btn-soft-lime btn-sm"><i class="ti ti-check me-1"></i> Tandai selesai</button>
+                        <button type="submit" class="btn btn-soft-lime btn-sm"><i class="ti ti-check me-1" aria-hidden="true"></i> Tandai selesai</button>
                     </form>
                 @endif
             </div>

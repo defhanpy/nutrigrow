@@ -246,20 +246,6 @@ class WhoGrowthEngineService
     }
 
     /**
-     * Inverse LMS helper for weight-for-length/height tables.
-     */
-    public function weightForHeightZ(string $indicator, Sex $sex, float $heightCm, float $targetZ): ?float
-    {
-        $lms = $this->lmsForHeight($indicator, $sex, $heightCm);
-
-        if ($lms === null) {
-            return null;
-        }
-
-        return $this->inverseZ($targetZ, ...$lms);
-    }
-
-    /**
      * @return array{0: float, 1: float, 2: float}|null
      */
     public function lmsForAge(string $indicator, Sex $sex, int $ageInDays): ?array

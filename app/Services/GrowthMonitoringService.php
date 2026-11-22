@@ -19,7 +19,6 @@ class GrowthMonitoringService
 {
     public function __construct(
         private readonly WhoGrowthEngineService $growthEngine,
-        private readonly NutritionService $nutrition,
     ) {}
 
     /**
@@ -158,20 +157,6 @@ class GrowthMonitoringService
             'detail' => ['category' => $category],
             'ip_address' => request()->ip(),
         ]);
-    }
-
-    /**
-     * @return array{headline: string, focus: string}
-     */
-    public function careSummary(Child $child): array
-    {
-        $assessment = $child->assessments()->latest('id')->first();
-        $recommendation = $this->nutrition->recommendForChild($child, $assessment);
-
-        return [
-            'headline' => $recommendation['headline'],
-            'focus' => $recommendation['focus'],
-        ];
     }
 
     private function flagStatusRisks(Child $child, Measurement $measurement): void

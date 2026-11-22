@@ -33,11 +33,11 @@
                                         <p class="ng-tiny ng-muted mt-1 mb-0">{{ $followUp->notes }}</p>
                                     @endif
                                 </div>
-                                @if ($followUp->status->value === 'pending')
+                                @if ($followUp->status->value === 'pending' && ! auth()->user()->isOrangTua())
                                     <form method="POST" action="{{ route('follow-ups.complete', $followUp) }}">
                                         @csrf
                                         @method('PATCH')
-                                        <button type="submit" class="btn btn-soft-lime btn-sm"><i class="ti ti-check"></i></button>
+                                        <button type="submit" class="btn btn-soft-lime btn-sm" aria-label="Tandai selesai tindak lanjut {{ $followUp->child->full_name }}"><i class="ti ti-check" aria-hidden="true"></i></button>
                                     </form>
                                 @endif
                             </div>
