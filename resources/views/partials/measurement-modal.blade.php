@@ -102,6 +102,14 @@
             return 'alert';
         };
 
+        const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#39;',
+        }[char]));
+
         const renderPreview = () => {
             if (!weight.value || !height.value) {
                 previewBody.innerHTML = 'Isi berat dan tinggi badan untuk melihat penilaian awal secara langsung.';
@@ -130,8 +138,8 @@
                     previewAge.textContent = data.age_label;
                     const rows = data.indicators.map((indicator) => `
                         <div class="ng-indicator-row">
-                            <span class="ng-indicator-label">${indicator.label}</span>
-                            <span class="badge ng-badge-${toneFor(indicator.status)}">${indicator.status ?? 'Belum dapat dinilai'}</span>
+                            <span class="ng-indicator-label">${escapeHtml(indicator.label)}</span>
+                            <span class="badge ng-badge-${toneFor(indicator.status)}">${escapeHtml(indicator.status ?? 'Belum dapat dinilai')}</span>
                         </div>`).join('');
                     previewBody.innerHTML = rows + `
                         <div class="mt-2 ng-tiny ng-muted">Penilaian awal bersifat informatif. Tenaga kesehatan tetap menjadi rujukan utama.</div>`;

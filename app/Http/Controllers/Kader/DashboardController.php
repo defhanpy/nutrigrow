@@ -12,6 +12,7 @@ use App\Services\GrowthMonitoringService;
 use App\Services\NutritionService;
 use App\Services\WhoGrowthEngineService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\View\View;
 
 class DashboardController extends Controller
@@ -27,7 +28,7 @@ class DashboardController extends Controller
     public function __invoke(Request $request): View
     {
         $user = $request->user();
-        $children = $this->access->queryFor($user)->orderBy('full_name')->get();
+        $children = $this->access->queryFor($user)->withCount('measurements')->orderBy('full_name')->get();
         $selected = $this->resolveSelectedChild($request, $children);
         $chart = $selected !== null ? $this->charts->weightChart($selected) : null;
         $trajectory = $selected !== null ? $this->growthEngine->evaluateTrajectory($selected) : null;
@@ -72,7 +73,7 @@ class DashboardController extends Controller
     }
 
     /**
-     * @param  \Illuminate\Support\Collection<int, Child>  $children
+     * @param  Collection<int, Child>  $children
      */
     private function resolveSelectedChild(Request $request, $children): ?Child
     {

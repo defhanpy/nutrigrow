@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Ortu;
 
 use App\Http\Controllers\Controller;
-use App\Models\Child;
 use App\Services\ChildAccessService;
 use App\Services\GrowthChartService;
 use App\Services\NutritionService;
@@ -22,7 +21,7 @@ class DashboardController extends Controller
 
     public function __invoke(Request $request): View
     {
-        $children = $this->access->queryFor($request->user())->orderBy('full_name')->get();
+        $children = $this->access->queryFor($request->user())->withCount('measurements')->orderBy('full_name')->get();
         $selected = $children->firstWhere('id', $request->integer('child')) ?? $children->first();
         $assessment = $selected?->latestMeasurement?->assessment;
         $chart = $selected !== null ? $this->charts->weightChart($selected) : null;

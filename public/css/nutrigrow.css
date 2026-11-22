@@ -697,4 +697,71 @@ a { color: var(--ng-forest-deep); }
     .ng-stat .ng-stat-value { font-size: 28px; }
     .ng-page-head { align-items: flex-start; }
     .ng-user-meta { display: none; }
+
+    /* Comfortable touch targets for kader working on phones. */
+    .btn { min-height: 42px; }
+    .btn-sm { min-height: 38px; }
+    .side-nav .side-nav-item .side-nav-link { min-height: 46px; }
+    .form-control, .form-select { min-height: 44px; font-size: 16px; }
+    .ng-demo-account { min-height: 52px; }
+    .ng-list-item { padding: 14px; }
+}
+
+/* ---------- Accessibility ---------- */
+.ng-skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 8px;
+    z-index: 1200;
+    padding: 10px 14px;
+    background: var(--ng-lime);
+    border: var(--ng-border);
+    border-radius: 8px;
+    box-shadow: var(--ng-shadow-sm);
+    font-weight: 800;
+    font-size: 13px;
+    color: var(--ng-ink);
+    text-decoration: none;
+}
+
+.ng-skip-link:focus {
+    left: 12px;
+    outline: 3px solid var(--ng-forest);
+    outline-offset: 2px;
+}
+
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible,
+.form-control:focus-visible,
+.form-select:focus-visible,
+.ng-demo-account:focus-visible,
+.ng-list-item:focus-visible {
+    outline: 3px solid var(--ng-forest);
+    outline-offset: 2px;
+}
+
+#konten-utama:focus { outline: none; }
+
+@media (prefers-reduced-motion: reduce) {
+    .btn,
+    .ng-demo-account {
+        transition: none;
+    }
+    .btn:hover {
+        transform: none;
+    }
+}
+
+@media (forced-colors: active) {
+    .ng-panel,
+    .ng-stat,
+    .ng-list-item,
+    .ng-food-card,
+    .badge,
+    .btn,
+    .form-control,
+    .form-select {
+        border: 2px solid CanvasText;
+    }
 }

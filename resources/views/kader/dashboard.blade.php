@@ -94,7 +94,7 @@
                             <div class="ng-indicator-row"><span class="ng-indicator-label">Tanggal lahir</span><strong>{{ $selectedChild->date_of_birth->translatedFormat('d F Y') }}</strong></div>
                             <div class="ng-indicator-row"><span class="ng-indicator-label">Berat lahir</span><strong>{{ $selectedChild->birth_weight ? $selectedChild->birth_weight.' kg' : '—' }}</strong></div>
                             <div class="ng-indicator-row"><span class="ng-indicator-label">Panjang lahir</span><strong>{{ $selectedChild->birth_height ? $selectedChild->birth_height.' cm' : '—' }}</strong></div>
-                            <div class="ng-indicator-row"><span class="ng-indicator-label">Jumlah kunjungan</span><strong>{{ $selectedChild->measurements()->count() }} kali</strong></div>
+                            <div class="ng-indicator-row"><span class="ng-indicator-label">Jumlah kunjungan</span><strong>{{ $selectedChild->measurements_count }} kali</strong></div>
                             <a href="{{ route('children.show', $selectedChild) }}" class="btn btn-outline-primary btn-sm mt-2">
                                 <i class="ti ti-arrow-right me-1"></i> Buka profil lengkap
                             </a>

@@ -134,7 +134,7 @@
                     <div class="ng-indicator-row"><span class="ng-indicator-label">Usia</span><strong>{{ $selectedChild->ageLabel() }}</strong></div>
                     <div class="ng-indicator-row"><span class="ng-indicator-label">Jenis kelamin</span><strong>{{ $selectedChild->sex->label() }}</strong></div>
                     <div class="ng-indicator-row"><span class="ng-indicator-label">Posyandu</span><strong>{{ $selectedChild->facility?->name }}</strong></div>
-                    <div class="ng-indicator-row"><span class="ng-indicator-label">Kunjungan tercatat</span><strong>{{ $selectedChild->measurements()->count() }} kali</strong></div>
+                    <div class="ng-indicator-row"><span class="ng-indicator-label">Kunjungan tercatat</span><strong>{{ $selectedChild->measurements_count }} kali</strong></div>
                 </div>
 
                 <div class="ng-panel mb-3">

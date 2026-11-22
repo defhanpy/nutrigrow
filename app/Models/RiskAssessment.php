@@ -39,9 +39,4 @@ class RiskAssessment extends Model
     {
         return $query->where('status', RiskStatus::Open);
     }
-
-    public function severityLabel(): string
-    {
-        return $this->severity->label();
-    }
 }

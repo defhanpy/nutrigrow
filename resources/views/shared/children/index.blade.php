@@ -40,7 +40,7 @@
                         </td>
                         <td class="ng-small">{{ $child->ageLabel() }}</td>
                         <td class="ng-small">{{ $child->facility?->name }}</td>
-                        <td class="ng-small">{{ $child->measurements()->count() }} kali</td>
+                        <td class="ng-small">{{ $child->measurements_count }} kali</td>
                         <td><x-status-badge :status="$latest?->overall_status" /></td>
                         <td class="text-end">
                             <a href="{{ route('children.show', $child) }}" class="btn btn-outline-primary btn-sm">

@@ -42,5 +42,6 @@
 <script src="{{ asset('boron/js/config.js') }}"></script>
 <script src="{{ asset('boron/js/app.js') }}"></script>
 @stack('scripts')
+@include('partials.flash-toast')
 </body>
 </html>

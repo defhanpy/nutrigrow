@@ -40,11 +40,6 @@ class Child extends Model
         return $this->hasMany(Guardian::class);
     }
 
-    public function guardianProfiles(): HasMany
-    {
-        return $this->hasMany(Guardian::class);
-    }
-
     public function measurements(): HasMany
     {
         return $this->hasMany(Measurement::class)->orderBy('measured_at');

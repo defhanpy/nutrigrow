@@ -23,6 +23,7 @@ class ChildController extends Controller
     public function index(Request $request): View
     {
         $children = $this->access->queryFor($request->user())
+            ->withCount('measurements')
             ->when($request->filled('q'), function ($query) use ($request): void {
                 $term = '%'.$request->string('q')->trim().'%';
                 $query->where(fn ($inner) => $inner

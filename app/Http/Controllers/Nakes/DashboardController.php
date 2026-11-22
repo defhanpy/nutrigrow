@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Nakes;
 use App\Http\Controllers\Controller;
 use App\Models\RiskAssessment;
 use App\Services\ChildAccessService;
-use App\Services\GrowthMonitoringService;
+use App\Services\WhoGrowthEngineService;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -13,7 +13,7 @@ class DashboardController extends Controller
 {
     public function __construct(
         private readonly ChildAccessService $access,
-        private readonly GrowthMonitoringService $monitoring,
+        private readonly WhoGrowthEngineService $growthEngine,
     ) {}
 
     public function __invoke(Request $request): View
@@ -65,7 +65,7 @@ class DashboardController extends Controller
                 ['label' => 'Balita terpantau', 'value' => $children->count(), 'icon' => 'ti-users', 'tone' => 'mint'],
                 ['label' => 'Sudah ditinjau', 'value' => RiskAssessment::query()->whereIn('child_id', $childIds)->where('status', 'resolved')->count(), 'icon' => 'ti-circle-check', 'tone' => 'sky'],
             ],
-            'trajectory' => $selectedChild !== null ? app(\App\Services\WhoGrowthEngineService::class)->evaluateTrajectory($selectedChild) : null,
+            'trajectory' => $selectedChild !== null ? $this->growthEngine->evaluateTrajectory($selectedChild) : null,
         ]);
     }
 }
