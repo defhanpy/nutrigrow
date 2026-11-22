@@ -31,14 +31,17 @@
     <div class="sidenav-menu">
         <div class="logo">
             <a href="{{ route($user->homeRoute()) }}" class="ng-brand" aria-label="NUTRIGROW, kembali ke beranda">
-                <img src="{{ asset('images/nutrigrow-mark.png') }}" alt="">
-                <span>
-                    NUTRIGROW
-                    <small>Kemenkes RI · Posyandu</small>
-                </span>
+                <img src="{{ asset('images/nutrigrow-mark.png') }}" alt="Logo NUTRIGROW" class="ng-brand-icon">
+                <div class="ng-brand-text">
+                    <span class="ng-brand-name">NUTRIGROW</span>
+                    <small class="ng-brand-badge">Kemenkes RI · Posyandu</small>
+                </div>
             </a>
+            <button class="button-close-fullsidebar d-lg-none" type="button" aria-label="Tutup menu navigasi">
+                <i class="ti ti-x align-middle"></i>
+            </button>
         </div>
-        <div data-simplebar class="h-100">
+        <div data-simplebar class="d-flex flex-column justify-content-between h-100">
             <nav aria-label="Menu utama {{ $portalTitle }}">
                 <ul class="side-nav">
                     <li class="side-nav-title">Menu {{ $portalTitle }}</li>
@@ -53,10 +56,15 @@
                     @endforeach
                 </ul>
             </nav>
-            <div class="ng-side-note">
-                <strong><i class="ti ti-heart-handshake" aria-hidden="true"></i> Pendampingan keluarga</strong>
-                Setiap angka adalah cerita anak. Catat dengan teliti, sampaikan dengan hangat.
-                <span class="ng-demo-note">Data contoh pada layanan ini bersifat simulasi.</span>
+            <div class="ng-sidebar-footer">
+                <div class="ng-sidebar-facility">
+                    <div class="d-flex align-items-center gap-2 mb-1">
+                        <span class="ng-live-pulse" aria-hidden="true"></span>
+                        <strong class="ng-facility-label">Faskes Aktif</strong>
+                    </div>
+                    <div class="ng-facility-name">{{ $user->facility?->name ?? 'Puskesmas Sukamaju' }}</div>
+                    <div class="ng-facility-sub">{{ $user->roleLabel() }}</div>
+                </div>
             </div>
         </div>
     </div>
