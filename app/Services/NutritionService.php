@@ -214,10 +214,16 @@ class NutritionService
             default => ['protein', 'sayur', 'energi'],
         };
 
+        $energyFoods = ['santan', 'alpukat', 'ubi'];
+
         $eligible = collect(self::FOODS)
             ->filter(fn (array $food) => $food['min_age_months'] <= $ageMonths)
-            ->map(function (array $food, string $slug) use ($priorityTags): array {
+            ->map(function (array $food, string $slug) use ($priorityTags, $focus, $energyFoods): array {
                 $score = count(array_intersect($food['tags'], $priorityTags));
+
+                if (in_array($focus, ['wasting', 'kurang_berat'], true) && in_array($slug, $energyFoods, true)) {
+                    $score++;
+                }
 
                 return [
                     'slug' => $slug,
@@ -286,10 +292,10 @@ class NutritionService
 
         return match ($focus) {
             'wasting' => 'Hasil pengukuran menunjukkan berat badan yang perlu segera ditinjau. Lengkapi menu padat gizi, lalu konsultasikan ke tenaga kesehatan untuk pemeriksaan lebih lanjut. Rekomendasi ini bukan pengganti pemeriksaan medis.',
-            'kurang_berat' => 'Berat badan anak berada di bawah rentang yang diharapkan. Tambahkan protein hewani dan makanan padat energi dalam porsi kecil namun sering, serta jadwalkan penimbangan ulang.',
-            'pendek' => 'Tinggi badan anak perlu dipantau. Pastikan asupan protein, zat besi, dan vitamin A cukup, serta lanjutkan pemantauan rutin setiap bulan.',
-            'risiko_lebih' => 'Berat badan anak berada di atas rentang yang diharapkan. Tetap berikan menu bergizi seimbang, kurangi makanan manis kemasan, dan ajak anak bergerak aktif.',
-            default => 'Pertumbuhan anak berada dalam rentang baik. Pertahankan variasi menu lokal dan datang rutin ke Posyandu setiap bulan.',
+            'kurang_berat' => 'Berat badan anak berada di bawah rentang yang diharapkan. Tambahkan protein hewani dan makanan padat energi dalam porsi kecil namun sering, serta jadwalkan penimbangan ulang. Rekomendasi ini bukan pengganti pemeriksaan medis.',
+            'pendek' => 'Tinggi badan anak perlu dipantau. Pastikan asupan protein, zat besi, dan vitamin A cukup, serta lanjutkan pemantauan rutin setiap bulan. Rekomendasi ini bukan pengganti pemeriksaan medis.',
+            'risiko_lebih' => 'Berat badan anak berada di atas rentang yang diharapkan. Tetap berikan menu bergizi seimbang, kurangi makanan manis kemasan, dan ajak anak bergerak aktif. Rekomendasi ini bukan pengganti pemeriksaan medis.',
+            default => 'Pertumbuhan anak berada dalam rentang baik. Pertahankan variasi menu lokal dan datang rutin ke Posyandu setiap bulan. Rekomendasi ini bukan pengganti pemeriksaan medis.',
         };
     }
 
