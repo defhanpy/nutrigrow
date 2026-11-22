@@ -693,10 +693,63 @@ a { color: var(--ng-forest-deep); }
     .ng-footer { padding: 16px 14px; }
 }
 
+@media (max-width: 767.98px) {
+    .app-topbar {
+        padding: 0 10px;
+    }
+    .topbar-menu {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        min-height: 56px;
+    }
+    .topbar-menu > div:first-child {
+        min-width: 0;
+        flex: 1 1 auto;
+    }
+    .topbar-menu > div:last-child {
+        flex: 0 0 auto;
+    }
+    .ng-topbar-context {
+        min-width: 0;
+        gap: 6px;
+    }
+    .ng-topbar-context .ng-portal {
+        font-size: 13px;
+        line-height: 1.25;
+        max-width: 190px;
+    }
+    .ng-user-chip {
+        padding: 4px;
+        gap: 0;
+    }
+    .ng-avatar {
+        width: 32px;
+        height: 32px;
+        font-size: 11px;
+    }
+    .sidenav-toggle-button {
+        width: 36px;
+        height: 36px;
+        min-height: 36px !important;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        flex: 0 0 auto;
+        font-size: 18px;
+    }
+}
+
 @media (max-width: 575.98px) {
     .ng-stat .ng-stat-value { font-size: 28px; }
     .ng-page-head { align-items: flex-start; }
     .ng-user-meta { display: none; }
+    .ng-topbar-context .ng-portal {
+        max-width: 140px;
+        font-size: 12px;
+    }
 
     /* Comfortable touch targets for kader working on phones. */
     .btn { min-height: 42px; }
