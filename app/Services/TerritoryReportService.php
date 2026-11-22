@@ -4,13 +4,14 @@ namespace App\Services;
 
 use App\Enums\RiskStatus;
 use App\Models\Child;
+use App\Models\FollowUpRecord;
 use App\Models\GrowthAssessment;
 use App\Models\HealthFacility;
 use App\Models\Measurement;
 use App\Models\RiskAssessment;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
-use App\Models\FollowUpRecord;
 use Illuminate\Support\Collection;
 
 class TerritoryReportService
@@ -46,12 +47,7 @@ class TerritoryReportService
 
         $latestAssessmentIds = GrowthAssessment::query()
             ->whereIn('child_id', (clone $children)->select('id'))
-            ->whereIn('id', function ($query) use ($children): void {
-                $query->selectRaw('MAX(id)')
-                    ->from('growth_assessments')
-                    ->whereIn('child_id', (clone $children)->select('id'))
-                    ->groupBy('child_id');
-            });
+            ->whereIn('measurement_id', $this->latestMeasurementIdsSubquery((clone $children)->select('id')));
 
         $stunting = (clone $latestAssessmentIds)
             ->whereIn('lhfa_status', ['Pendek', 'Sangat Pendek'])
@@ -104,12 +100,7 @@ class TerritoryReportService
                     ->count('child_id');
                 $latestIds = GrowthAssessment::query()
                     ->whereIn('child_id', $childIds)
-                    ->whereIn('id', function ($query) use ($childIds): void {
-                        $query->selectRaw('MAX(id)')
-                            ->from('growth_assessments')
-                            ->whereIn('child_id', $childIds)
-                            ->groupBy('child_id');
-                    });
+                    ->whereIn('measurement_id', $this->latestMeasurementIdsSubquery($childIds));
                 $stunting = (clone $latestIds)->whereIn('lhfa_status', ['Pendek', 'Sangat Pendek'])->count();
                 $wasting = (clone $latestIds)->whereIn('wfh_status', ['Gizi Kurang (Wasting)', 'Gizi Buruk (Wasting Berat)'])->count();
                 $openAlerts = RiskAssessment::query()
@@ -131,5 +122,24 @@ class TerritoryReportService
             })
             ->sortBy('name')
             ->values();
+    }
+
+    /**
+     * Ids of each child's most recent measurement, ordered by measurement date.
+     *
+     * @param  Builder<int, Child>|\Illuminate\Database\Query\Builder  $childIds
+     */
+    private function latestMeasurementIdsSubquery($childIds): \Illuminate\Database\Query\Builder
+    {
+        return Measurement::query()
+            ->select('measurements.id')
+            ->whereIn('measurements.child_id', $childIds)
+            ->whereNotExists(function ($query): void {
+                $query->selectRaw('1')
+                    ->from('measurements as newer')
+                    ->whereColumn('newer.child_id', 'measurements.child_id')
+                    ->whereColumn('newer.measured_at', '>', 'measurements.measured_at');
+            })
+            ->toBase();
     }
 }

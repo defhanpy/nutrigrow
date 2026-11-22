@@ -54,6 +54,7 @@
             <div class="ng-side-note">
                 <strong><i class="ti ti-heart-handshake" aria-hidden="true"></i> Pendampingan keluarga</strong>
                 Setiap angka adalah cerita anak. Catat dengan teliti, sampaikan dengan hangat.
+                <span class="ng-demo-note">Data contoh pada layanan ini bersifat simulasi.</span>
             </div>
         </div>
     </div>
