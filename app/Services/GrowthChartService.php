@@ -42,7 +42,7 @@ class GrowthChartService
             ->orderBy('measured_at')
             ->get()
             ->map(fn (Measurement $measurement): array => [
-                'x' => round($measurement->measured_at->diffInDays($child->date_of_birth) / 30.4375, 2),
+                'x' => round(max(0, $child->ageInDays($measurement->measured_at)) / 30.4375, 2),
                 'y' => (float) $measurement->weight_kg,
                 'label' => $measurement->measured_at->translatedFormat('d M Y'),
             ])

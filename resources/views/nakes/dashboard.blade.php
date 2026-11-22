@@ -80,9 +80,9 @@
 
                     @php($latest = $selectedChild->latestMeasurement?->assessment)
                     <div class="row g-2 mt-2">
-                        <div class="col-sm-4"><div class="ng-soft-box"><div class="ng-tiny ng-muted">Berat menurut usia</div><x-status-badge :status="$latest?->wfa_status" class="mt-1" /><div class="ng-tiny ng-muted mt-1">z = {{ $latest?->wfa_z ?? '—' }}</div></div></div>
-                        <div class="col-sm-4"><div class="ng-soft-box"><div class="ng-tiny ng-muted">Tinggi menurut usia</div><x-status-badge :status="$latest?->lhfa_status" class="mt-1" /><div class="ng-tiny ng-muted mt-1">z = {{ $latest?->lhfa_z ?? '—' }}</div></div></div>
-                        <div class="col-sm-4"><div class="ng-soft-box"><div class="ng-tiny ng-muted">Berat menurut tinggi</div><x-status-badge :status="$latest?->wfh_status" class="mt-1" /><div class="ng-tiny ng-muted mt-1">z = {{ $latest?->wfh_z ?? '—' }}</div></div></div>
+                        <div class="col-sm-4"><div class="ng-soft-box"><div class="ng-tiny ng-muted">Berat menurut usia</div><x-status-badge :status="$latest?->wfa_status" class="mt-1" /></div></div>
+                        <div class="col-sm-4"><div class="ng-soft-box"><div class="ng-tiny ng-muted">Tinggi menurut usia</div><x-status-badge :status="$latest?->lhfa_status" class="mt-1" /></div></div>
+                        <div class="col-sm-4"><div class="ng-soft-box"><div class="ng-tiny ng-muted">Berat menurut tinggi</div><x-status-badge :status="$latest?->wfh_status" class="mt-1" /></div></div>
                     </div>
                 </div>
 

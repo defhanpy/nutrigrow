@@ -82,7 +82,7 @@ class WhoGrowthEngineService
      * Explain sequential growth patterns in plain Indonesian without diagnosing.
      *
      * @return array{
-     *     findings: array<int, array{code: string, title: string, description: string, severity: string, evidence: array<string, mixed>}>,
+     *     findings: array<int, array{code: string, title: string, description: string, severity: string, evidence: array<string, mixed>, occurrences?: int}>,
      *     visits_analyzed: int,
      *     summary: string
      * }
@@ -219,6 +219,8 @@ class WhoGrowthEngineService
                 ['hari_sejak_pengukuran' => $daysSinceLatest],
             );
         }
+
+        $findings = $this->collapseRepeatedFindings($findings);
 
         return [
             'findings' => $findings,
@@ -406,6 +408,10 @@ class WhoGrowthEngineService
             ? log($value / $m) / $s
             : (((($value / $m) ** $l) - 1) / ($l * $s));
 
+        if (abs($l) < 1e-9) {
+            return $z;
+        }
+
         $sd3Pos = $m * ((1 + $l * $s * 3) ** (1 / $l));
         $sd2Pos = $m * ((1 + $l * $s * 2) ** (1 / $l));
         $sd3Neg = $m * ((1 + $l * $s * -3) ** (1 / $l));
@@ -510,6 +516,30 @@ class WhoGrowthEngineService
     private function roundZ(?float $z): ?float
     {
         return $z === null ? null : round($z, 2);
+    }
+
+    /**
+     * Keep one readable finding per pattern, retaining the most recent evidence.
+     *
+     * @param  array<int, array{code: string, title: string, description: string, severity: string, evidence: array<string, mixed>}>  $findings
+     * @return array<int, array{code: string, title: string, description: string, severity: string, evidence: array<string, mixed>, occurrences: int}>
+     */
+    private function collapseRepeatedFindings(array $findings): array
+    {
+        $collapsed = [];
+
+        foreach ($findings as $finding) {
+            $occurrences = ($collapsed[$finding['code']]['occurrences'] ?? 0) + 1;
+            $collapsed[$finding['code']] = [...$finding, 'occurrences' => $occurrences];
+        }
+
+        return array_values(array_map(function (array $finding): array {
+            if ($finding['occurrences'] > 1) {
+                $finding['description'] .= ' Hal serupa tercatat '.$finding['occurrences'].' kali dalam riwayat kunjungan.';
+            }
+
+            return $finding;
+        }, $collapsed));
     }
 
     /**
