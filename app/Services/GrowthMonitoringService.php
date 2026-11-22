@@ -184,6 +184,8 @@ class GrowthMonitoringService
 
         $flags = [];
 
+        $this->resolveSupersededFlags($child, $assessment);
+
         $this->addFlag($flags, $assessment->wfa_status, [
             'Gizi Buruk' => ['underweight_severe', 'high', 'Berat badan anak jauh di bawah rentang usianya dan perlu segera ditinjau tenaga kesehatan.'],
             'Gizi Kurang' => ['underweight', 'medium', 'Berat badan anak berada di bawah rentang usianya. Perlu pendampingan makan dan pemantauan ulang.'],
@@ -246,6 +248,37 @@ class GrowthMonitoringService
                 ],
                 'status' => RiskStatus::Open,
             ]);
+        }
+    }
+
+    /**
+     * Close moderate flags when the same measurement now shows a severe form.
+     */
+    private function resolveSupersededFlags(Child $child, GrowthAssessment $assessment): void
+    {
+        $pairs = [
+            'underweight_severe' => ['underweight'],
+            'stunting_severe' => ['stunting'],
+            'wasting_severe' => ['wasting'],
+        ];
+
+        foreach ($pairs as $severe => $moderateFlags) {
+            $hasSevere = match ($severe) {
+                'underweight_severe' => $assessment->wfa_status === 'Gizi Buruk',
+                'stunting_severe' => $assessment->lhfa_status === 'Sangat Pendek',
+                'wasting_severe' => $assessment->wfh_status === 'Gizi Buruk (Wasting Berat)',
+                default => false,
+            };
+
+            if (! $hasSevere) {
+                continue;
+            }
+
+            RiskAssessment::query()
+                ->where('child_id', $child->id)
+                ->whereIn('flag', $moderateFlags)
+                ->where('status', RiskStatus::Open)
+                ->update(['status' => RiskStatus::Resolved]);
         }
     }
 

@@ -1,4 +1,6 @@
 *
 !private/
 !public/
+!who/
+!who/who-lms.json
 !.gitignore

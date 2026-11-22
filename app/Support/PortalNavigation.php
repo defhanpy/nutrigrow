@@ -1,0 +1,79 @@
+<?php
+
+namespace App\Support;
+
+use App\Enums\Role;
+use App\Models\User;
+
+class PortalNavigation
+{
+    /**
+     * @return array<int, array{label: string, icon: string, url: string, active: array<int, string>}>
+     */
+    public static function for(User $user): array
+    {
+        return match ($user->role) {
+            Role::Kader => self::kader(),
+            Role::OrangTua => self::orangTua(),
+            Role::TenagaKesehatan => self::tenagaKesehatan(),
+            Role::AdminPuskesmas => self::adminPuskesmas(),
+        };
+    }
+
+    /**
+     * @return array<int, array{label: string, icon: string, url: string, active: array<int, string>}>
+     */
+    private static function kader(): array
+    {
+        return [
+            ['label' => 'Dashboard', 'icon' => 'ti-layout-dashboard', 'url' => route('kader.dashboard'), 'active' => ['kader.dashboard']],
+            ['label' => 'Data Anak', 'icon' => 'ti-users', 'url' => route('children.index'), 'active' => ['children.index', 'children.show']],
+            ['label' => 'Pengukuran', 'icon' => 'ti-scale', 'url' => route('kader.dashboard').'#pengukuran', 'active' => []],
+            ['label' => 'Analisis Pertumbuhan', 'icon' => 'ti-chart-line', 'url' => route('children.index'), 'active' => []],
+            ['label' => 'Tindak Lanjut', 'icon' => 'ti-clipboard-check', 'url' => route('follow-ups.index'), 'active' => ['follow-ups.index']],
+            ['label' => 'Edukasi Gizi', 'icon' => 'ti-salad', 'url' => route('nutrition.index'), 'active' => ['nutrition.index']],
+        ];
+    }
+
+    /**
+     * @return array<int, array{label: string, icon: string, url: string, active: array<int, string>}>
+     */
+    private static function orangTua(): array
+    {
+        return [
+            ['label' => 'Beranda', 'icon' => 'ti-home', 'url' => route('ortu.dashboard'), 'active' => ['ortu.dashboard']],
+            ['label' => 'Pertumbuhan Anak', 'icon' => 'ti-chart-line', 'url' => route('ortu.dashboard').'#pertumbuhan', 'active' => []],
+            ['label' => 'Edukasi Gizi', 'icon' => 'ti-salad', 'url' => route('nutrition.index'), 'active' => ['nutrition.index']],
+            ['label' => 'Jadwal', 'icon' => 'ti-calendar-event', 'url' => route('ortu.dashboard').'#jadwal', 'active' => []],
+            ['label' => 'Profil', 'icon' => 'ti-user-circle', 'url' => route('ortu.dashboard').'#profil', 'active' => []],
+        ];
+    }
+
+    /**
+     * @return array<int, array{label: string, icon: string, url: string, active: array<int, string>}>
+     */
+    private static function tenagaKesehatan(): array
+    {
+        return [
+            ['label' => 'Dashboard Review', 'icon' => 'ti-layout-dashboard', 'url' => route('nakes.dashboard'), 'active' => ['nakes.dashboard']],
+            ['label' => 'Daftar Peninjauan', 'icon' => 'ti-alert-triangle', 'url' => route('nakes.dashboard').'#antrean', 'active' => []],
+            ['label' => 'Profil Anak', 'icon' => 'ti-users', 'url' => route('children.index'), 'active' => ['children.index', 'children.show']],
+            ['label' => 'Hasil Analisis', 'icon' => 'ti-activity', 'url' => route('children.index'), 'active' => []],
+            ['label' => 'Tindak Lanjut', 'icon' => 'ti-clipboard-check', 'url' => route('follow-ups.index'), 'active' => ['follow-ups.index']],
+        ];
+    }
+
+    /**
+     * @return array<int, array{label: string, icon: string, url: string, active: array<int, string>}>
+     */
+    private static function adminPuskesmas(): array
+    {
+        return [
+            ['label' => 'Dashboard Wilayah', 'icon' => 'ti-map-2', 'url' => route('puskesmas.dashboard'), 'active' => ['puskesmas.dashboard']],
+            ['label' => 'Posyandu', 'icon' => 'ti-building-community', 'url' => route('puskesmas.dashboard').'#posyandu', 'active' => []],
+            ['label' => 'Pengguna', 'icon' => 'ti-user-cog', 'url' => route('puskesmas.dashboard').'#pengguna', 'active' => []],
+            ['label' => 'Laporan', 'icon' => 'ti-file-download', 'url' => route('puskesmas.reports'), 'active' => ['puskesmas.reports']],
+            ['label' => 'Pengaturan', 'icon' => 'ti-settings', 'url' => route('puskesmas.dashboard').'#pengaturan', 'active' => []],
+        ];
+    }
+}
