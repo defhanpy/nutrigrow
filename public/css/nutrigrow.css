@@ -819,13 +819,106 @@ button:focus-visible,
     }
 }
 
-.ng-demo-note {
-    display: block;
-    margin-top: 8px;
-    padding-top: 8px;
-    border-top: 2px dashed #b9cdc2;
-    font-size: 10px;
+/* ---------- Select2 Neubrutalism Override ---------- */
+.select2-container .select2-selection--single {
+    height: 44px;
+    border: var(--ng-border) !important;
+    border-radius: 8px;
+    background-color: var(--ng-paper);
+    box-shadow: 2px 2px 0 var(--ng-ink);
+    display: flex;
+    align-items: center;
+    padding: 4px 10px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: var(--ng-ink);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: normal;
+    padding-left: 0;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 42px;
+    right: 8px;
+}
+
+.select2-dropdown {
+    border: var(--ng-border) !important;
+    border-radius: 8px !important;
+    background: var(--ng-paper);
+    box-shadow: var(--ng-shadow-sm) !important;
+    z-index: 1060;
+}
+
+.select2-container--default .select2-search--dropdown .select2-search__field {
+    border: 2px solid var(--ng-ink);
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 13px;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: var(--ng-forest) !important;
+    color: #fff !important;
+}
+
+.select2-container--default .select2-results__option[aria-selected="true"] {
+    background-color: var(--ng-mint) !important;
+    color: var(--ng-ink) !important;
     font-weight: 700;
-    letter-spacing: 0.02em;
-    color: #52675c;
+}
+
+/* ---------- Flatpickr Neubrutalism Override ---------- */
+.flatpickr-calendar {
+    border: var(--ng-border) !important;
+    border-radius: 10px !important;
+    box-shadow: var(--ng-shadow) !important;
+    background: var(--ng-paper);
+    font-family: inherit;
+    z-index: 1065;
+}
+
+.flatpickr-calendar .flatpickr-months {
+    background: var(--ng-forest);
+    color: #fff;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.flatpickr-calendar .flatpickr-months .flatpickr-month,
+.flatpickr-calendar .flatpickr-current-month .cur-month,
+.flatpickr-calendar .flatpickr-current-month input.cur-year {
+    color: #fff !important;
+    font-weight: 800;
+}
+
+.flatpickr-calendar .flatpickr-months .flatpickr-prev-month,
+.flatpickr-calendar .flatpickr-months .flatpickr-next-month {
+    color: #fff !important;
+    fill: #fff !important;
+}
+
+.flatpickr-calendar .flatpickr-day.selected,
+.flatpickr-calendar .flatpickr-day.startRange,
+.flatpickr-calendar .flatpickr-day.endRange {
+    background: var(--ng-forest) !important;
+    border-color: var(--ng-forest) !important;
+    color: #fff !important;
+    font-weight: 700;
+}
+
+.flatpickr-calendar .flatpickr-day.today {
+    border: 2px solid var(--ng-forest) !important;
+}
+
+.flatpickr-calendar .flatpickr-day:hover {
+    background: var(--ng-mint) !important;
+    color: var(--ng-ink) !important;
+}
+
+.flatpickr-input[readonly] {
+    background-color: var(--ng-paper) !important;
+    cursor: pointer;
 }

@@ -154,8 +154,18 @@
             timer = setTimeout(renderPreview, 450);
         };
 
-        childSelect.addEventListener('change', () => { updateTarget(); schedule(); });
+        if (childSelect && window.jQuery) {
+            window.jQuery(childSelect).on('select2:select change', () => { updateTarget(); schedule(); });
+        } else if (childSelect) {
+            childSelect.addEventListener('change', () => { updateTarget(); schedule(); });
+        }
+
+        if (method && window.jQuery) {
+            window.jQuery(method).on('select2:select change', schedule);
+        }
+
         [weight, height, measuredAt, method].forEach((input) => {
+            if (!input) return;
             input.addEventListener('input', schedule);
             input.addEventListener('change', schedule);
         });

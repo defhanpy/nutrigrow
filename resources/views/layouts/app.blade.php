@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="{{ asset('boron/css/vendor.min.css') }}">
     <link rel="stylesheet" id="app-style" href="{{ asset('boron/css/app.min.css') }}">
     <link rel="stylesheet" href="{{ asset('boron/css/icons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('boron/vendor/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('boron/vendor/flatpickr/flatpickr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/nutrigrow.css') }}">
     @stack('styles')
 </head>
@@ -121,8 +123,56 @@
 </div>
 
 <script src="{{ asset('boron/js/vendor.min.js') }}"></script>
+<script src="{{ asset('boron/vendor/select2/js/select2.min.js') }}"></script>
+<script src="{{ asset('boron/vendor/select2/js/i18n/id.js') }}"></script>
+<script src="{{ asset('boron/vendor/flatpickr/flatpickr.min.js') }}"></script>
+<script src="{{ asset('boron/vendor/flatpickr/l10n/id.js') }}"></script>
 <script src="{{ asset('boron/js/config.js') }}"></script>
 <script src="{{ asset('boron/js/app.js') }}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        if (typeof window.flatpickr !== 'undefined') {
+            flatpickr.localize(flatpickr.l10ns.id);
+            document.querySelectorAll('input[type="date"], .js-datepicker').forEach(function (el) {
+                var minDate = el.getAttribute('min') || null;
+                var maxDate = el.getAttribute('max') || null;
+                var defaultVal = el.value || null;
+                flatpickr(el, {
+                    dateFormat: 'Y-m-d',
+                    altInput: true,
+                    altFormat: 'j F Y',
+                    minDate: minDate,
+                    maxDate: maxDate,
+                    defaultDate: defaultVal,
+                    allowInput: false,
+                    disableMobile: true
+                });
+            });
+        }
+
+        if (typeof window.jQuery !== 'undefined' && typeof window.jQuery.fn.select2 !== 'undefined') {
+            window.jQuery('select.form-select, select.js-select2').each(function () {
+                var $select = window.jQuery(this);
+                if ($select.hasClass('select2-hidden-accessible')) return;
+                var $modal = $select.closest('.modal');
+                var opts = {
+                    language: 'id',
+                    width: '100%',
+                    theme: 'default'
+                };
+                if ($modal.length) {
+                    opts.dropdownParent = $modal;
+                }
+                $select.select2(opts);
+                $select.on('select2:select', function () {
+                    if (this.hasAttribute('onchange')) {
+                        this.dispatchEvent(new Event('change'));
+                    }
+                });
+            });
+        }
+    });
+</script>
 @stack('scripts')
 @include('partials.flash-toast')
 </body>
