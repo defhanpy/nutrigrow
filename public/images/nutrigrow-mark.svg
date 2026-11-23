@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+    <!-- Base rounded emblem background -->
+    <rect width="100" height="100" rx="20" fill="#1e6542"/>
+    
+    <!-- Stylized N combining growth bars and leaf sprout -->
+    <!-- Left vertical bar 1 (short) -->
+    <rect x="22" y="52" width="10" height="26" rx="4" fill="#ffffff"/>
+    
+    <!-- Left vertical bar 2 (medium) -->
+    <rect x="36" y="38" width="10" height="40" rx="4" fill="#ffffff"/>
+    
+    <!-- Main stem / vertical bar 3 (tall) -->
+    <rect x="50" y="24" width="10" height="54" rx="4" fill="#ffffff"/>
+    
+    <!-- Leaf sprout on upper right -->
+    <path d="M64 42 C64 26, 78 22, 78 22 C78 22, 80 36, 68 44 C66 45.5, 64 44.5, 64 42 Z" fill="#ffffff"/>
+    <!-- Leaf delicate negative inner curve -->
+    <path d="M64 42 C69 34, 76 25, 76 25" stroke="#1e6542" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

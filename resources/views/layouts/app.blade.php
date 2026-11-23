@@ -31,7 +31,7 @@
     <div class="sidenav-menu">
         <div class="logo">
             <a href="{{ route($user->homeRoute()) }}" class="ng-brand" aria-label="NUTRIGROW, kembali ke beranda">
-                <img src="{{ asset('images/nutrigrow-mark.png') }}" alt="Logo NUTRIGROW" class="ng-brand-icon">
+                <img src="{{ asset('images/nutrigrow-mark.svg') }}" alt="Logo NUTRIGROW" class="ng-brand-icon">
                 <div class="ng-brand-text">
                     <span class="ng-brand-name">NUTRIGROW</span>
                     <small class="ng-brand-badge">Standar WHO · Posyandu Komunitas</small>

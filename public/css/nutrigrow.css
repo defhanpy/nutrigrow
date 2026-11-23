@@ -77,8 +77,8 @@ a { color: var(--ng-forest-deep); }
     height: 38px;
     border-radius: 8px;
     border: 2px solid var(--ng-ink);
-    background: #1e6542;
-    padding: 3px;
+    background: transparent;
+    padding: 0;
     box-shadow: 2px 2px 0 var(--ng-ink);
     flex-shrink: 0;
     object-fit: contain;
@@ -770,8 +770,8 @@ a { color: var(--ng-forest-deep); }
     height: 48px;
     border-radius: 10px;
     border: 2px solid var(--ng-ink);
-    background: #1e6542;
-    padding: 4px;
+    background: transparent;
+    padding: 0;
     box-shadow: 3px 3px 0 var(--ng-ink);
 }
 
