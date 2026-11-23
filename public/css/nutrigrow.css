@@ -246,9 +246,25 @@ a { color: var(--ng-forest-deep); }
     background: var(--ng-cream) !important;
     border-bottom: var(--ng-border);
     box-shadow: none;
+    min-height: var(--bs-topbar-height, 70px);
+    display: flex;
+    align-items: center;
+    padding: 12px 24px;
 }
 
-.topbar-menu { gap: 12px; }
+.topbar-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 16px;
+    margin: 0;
+}
+
+.topbar-menu > div {
+    display: flex;
+    align-items: center;
+}
 
 .ng-topbar-context {
     display: flex;
@@ -259,20 +275,22 @@ a { color: var(--ng-forest-deep); }
 
 .ng-topbar-context .ng-org {
     font-size: 11px;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     font-weight: 700;
     color: #4a6256;
-    white-space: nowrap;
+    line-height: 1.2;
+    margin-bottom: 2px;
 }
 
 .ng-topbar-context .ng-portal {
     font-weight: 800;
     font-size: 15px;
-    line-height: 1.2;
+    line-height: 1.25;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    color: var(--ng-ink);
 }
 
 .sidenav-toggle-button {
@@ -280,23 +298,32 @@ a { color: var(--ng-forest-deep); }
     border: 2px solid var(--ng-ink) !important;
     border-radius: 6px;
     color: var(--ng-ink) !important;
-    box-shadow: 3px 3px 0 var(--ng-ink);
+    box-shadow: 2px 2px 0 var(--ng-ink);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .ng-user-chip {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 10px;
-    padding: 6px 10px;
+    padding: 6px 12px;
     border: 2px solid var(--ng-ink);
     border-radius: 999px;
     background: var(--ng-paper);
-    box-shadow: 3px 3px 0 var(--ng-ink);
+    box-shadow: 2.5px 2.5px 0 var(--ng-ink);
     text-decoration: none;
     color: var(--ng-ink);
+    transition: all 0.15s ease-in-out;
 }
 
-.ng-user-chip:hover { background: var(--ng-mint); color: var(--ng-ink); }
+.ng-user-chip:hover {
+    background: var(--ng-mint);
+    color: var(--ng-ink);
+    box-shadow: 1.5px 1.5px 0 var(--ng-ink);
+    transform: translate(1px, 1px);
+}
 
 .ng-avatar {
     width: 36px;
@@ -863,14 +890,16 @@ a { color: var(--ng-forest-deep); }
 
 @media (max-width: 767.98px) {
     .app-topbar {
-        padding: 0 10px;
+        padding: 8px 12px;
+        min-height: 58px;
     }
     .topbar-menu {
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 8px;
-        min-height: 56px;
+        min-height: 100%;
+        width: 100%;
     }
     .topbar-menu > div:first-child {
         min-width: 0;
