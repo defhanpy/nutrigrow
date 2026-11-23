@@ -19,6 +19,7 @@ use App\Http\Controllers\Puskesmas\SettingsController as PuskesmasSettingsContro
 use App\Http\Controllers\Puskesmas\UserController as PuskesmasUserController;
 use App\Http\Controllers\Shared\ChildController;
 use App\Http\Controllers\Shared\FollowUpController;
+use App\Http\Controllers\Shared\NutritionChatController;
 use App\Http\Controllers\Shared\NutritionController;
 use App\Http\Controllers\Shared\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -52,6 +53,9 @@ Route::middleware('auth')->group(function (): void {
     });
 
     Route::get('/edukasi-gizi', [NutritionController::class, 'index'])->name('nutrition.index');
+    Route::get('/konsultasi-gizi', [NutritionChatController::class, 'index'])->name('nutrition.chat');
+    Route::post('/konsultasi-gizi/kirim', [NutritionChatController::class, 'send'])->name('nutrition.chat.send');
+    Route::post('/konsultasi-gizi/reset', [NutritionChatController::class, 'reset'])->name('nutrition.chat.reset');
 
     Route::middleware('role:kader')->prefix('kader')->name('kader.')->group(function (): void {
         Route::get('/dashboard', KaderDashboardController::class)->name('dashboard');

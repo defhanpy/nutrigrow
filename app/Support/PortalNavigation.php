@@ -32,6 +32,7 @@ class PortalNavigation
             ['label' => 'Analisis Pertumbuhan', 'icon' => 'ti-chart-line', 'url' => route('kader.analytics'), 'active' => ['kader.analytics']],
             ['label' => 'Tindak Lanjut', 'icon' => 'ti-clipboard-check', 'url' => route('follow-ups.index'), 'active' => ['follow-ups.index']],
             ['label' => 'Edukasi Gizi', 'icon' => 'ti-salad', 'url' => route('nutrition.index'), 'active' => ['nutrition.index']],
+            ['label' => 'Asisten Gizi AI', 'icon' => 'ti-sparkles', 'url' => route('nutrition.chat'), 'active' => ['nutrition.chat']],
         ];
     }
 
@@ -43,6 +44,7 @@ class PortalNavigation
         return [
             ['label' => 'Beranda', 'icon' => 'ti-home', 'url' => route('ortu.dashboard'), 'active' => ['ortu.dashboard']],
             ['label' => 'Pertumbuhan Anak', 'icon' => 'ti-chart-line', 'url' => route('ortu.growth'), 'active' => ['ortu.growth']],
+            ['label' => 'Tanya Asisten AI', 'icon' => 'ti-sparkles', 'url' => route('nutrition.chat'), 'active' => ['nutrition.chat']],
             ['label' => 'Edukasi Gizi', 'icon' => 'ti-salad', 'url' => route('nutrition.index'), 'active' => ['nutrition.index']],
             ['label' => 'Jadwal', 'icon' => 'ti-calendar-event', 'url' => route('ortu.schedule'), 'active' => ['ortu.schedule']],
             ['label' => 'Profil', 'icon' => 'ti-user-circle', 'url' => route('profile.show'), 'active' => ['profile.show']],

@@ -41,10 +41,11 @@ class NavigationTest extends TestCase
             Role::Kader->value => [
                 'kader.dashboard', 'children.index', 'kader.measurements',
                 'kader.analytics', 'follow-ups.index', 'nutrition.index',
+                'nutrition.chat',
             ],
             Role::OrangTua->value => [
-                'ortu.dashboard', 'ortu.growth', 'nutrition.index',
-                'ortu.schedule', 'profile.show',
+                'ortu.dashboard', 'ortu.growth', 'nutrition.chat',
+                'nutrition.index', 'ortu.schedule', 'profile.show',
             ],
             Role::TenagaKesehatan->value => [
                 'nakes.dashboard', 'nakes.reviews', 'children.index',
