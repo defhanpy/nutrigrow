@@ -71,6 +71,7 @@ a { color: var(--ng-forest-deep); }
     color: #fff;
 }
 
+.ng-brand img,
 .ng-brand-icon {
     width: 38px;
     height: 38px;
@@ -80,6 +81,7 @@ a { color: var(--ng-forest-deep); }
     padding: 2px;
     box-shadow: 2px 2px 0 var(--ng-ink);
     flex-shrink: 0;
+    object-fit: contain;
 }
 
 .ng-brand-text {
@@ -708,7 +710,7 @@ a { color: var(--ng-forest-deep); }
 .ng-auth-side {
     background: var(--ng-forest);
     color: #fff;
-    padding: 48px;
+    padding: 56px 48px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -720,24 +722,75 @@ a { color: var(--ng-forest-deep); }
 .ng-auth-side::after {
     content: '';
     position: absolute;
-    width: 340px;
-    height: 340px;
-    border: 3px solid rgba(255, 255, 255, 0.25);
+    width: 360px;
+    height: 360px;
+    border: 3px solid rgba(255, 255, 255, 0.12);
     border-radius: 50%;
-    right: -110px;
-    bottom: -110px;
+    right: -120px;
+    bottom: -120px;
+    pointer-events: none;
 }
 
-.ng-auth-side .ng-brand { color: #fff; font-size: 20px; }
-.ng-auth-side h1 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.1; margin: 30px 0 14px; }
-.ng-auth-side p { color: #d8f5e5; font-size: 14px; line-height: 1.7; max-width: 46ch; }
-.ng-auth-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+.ng-auth-side .ng-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.ng-auth-side .ng-brand-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 0 var(--ng-ink);
+}
+
+.ng-auth-side .ng-brand-name {
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    color: #fff;
+}
+
+.ng-auth-side .ng-brand-badge {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--ng-mint);
+}
+
+.ng-auth-side h1 {
+    font-size: clamp(1.8rem, 2.6vw, 2.5rem);
+    font-weight: 800;
+    line-height: 1.2;
+    margin: 36px 0 16px;
+    color: #fff;
+    letter-spacing: -0.02em;
+}
+
+.ng-auth-side p {
+    color: #d8f5e5;
+    font-size: 15px;
+    line-height: 1.65;
+    max-width: 44ch;
+}
+
+.ng-auth-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 24px;
+}
+
 .ng-auth-badges span {
-    border: 2px solid rgba(255, 255, 255, 0.6);
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.08);
     border-radius: 999px;
-    padding: 5px 10px;
-    font-size: 11px;
+    padding: 6px 14px;
+    font-size: 12px;
     font-weight: 700;
+    color: #eafff1;
+    display: inline-flex;
+    align-items: center;
 }
 
 .ng-auth-main {
