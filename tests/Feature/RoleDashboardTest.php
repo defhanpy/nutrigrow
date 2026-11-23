@@ -173,6 +173,93 @@ class RoleDashboardTest extends TestCase
         $response->assertDontSee('Endpoint');
     }
 
+    public function test_every_kader_sidebar_page_renders(): void
+    {
+        $facility = HealthFacility::factory()->create();
+        $kader = User::factory()->kader()->create(['facility_id' => $facility->id]);
+        $child = Child::factory()->male()->agedMonths(18)->create(['facility_id' => $facility->id]);
+        $child->measurements()->create([
+            'measured_at' => now()->toDateString(),
+            'weight_kg' => 9.6,
+            'height_cm' => 75.7,
+            'method' => 'terlentang',
+        ]);
+
+        $pages = [
+            '/kader/dashboard' => 'Selamat bertugas di Posyandu',
+            '/anak' => 'Data anak',
+            '/kader/pengukuran' => 'Riwayat pengukuran',
+            '/kader/analisis' => 'Analisis pertumbuhan',
+            '/tindak-lanjut' => 'Tindak lanjut',
+            '/edukasi-gizi' => 'Edukasi gizi',
+        ];
+
+        foreach ($pages as $url => $text) {
+            $this->actingAs($kader)->get($url)->assertOk()->assertSee($text);
+        }
+    }
+
+    public function test_every_parent_sidebar_page_renders(): void
+    {
+        $facility = HealthFacility::factory()->create();
+        $parent = User::factory()->orangTua()->create(['facility_id' => $facility->id]);
+        $child = Child::factory()->female()->agedMonths(20)->create(['facility_id' => $facility->id]);
+        Guardian::factory()->create(['user_id' => $parent->id, 'child_id' => $child->id]);
+
+        $pages = [
+            '/orang-tua/beranda' => 'Ruang keluarga',
+            '/orang-tua/pertumbuhan' => 'Kurva pertumbuhan (KMS)',
+            '/edukasi-gizi' => 'Edukasi gizi',
+            '/orang-tua/jadwal' => 'Jadwal Posyandu',
+            '/profil' => 'Profil',
+        ];
+
+        foreach ($pages as $url => $text) {
+            $this->actingAs($parent)->get($url)->assertOk()->assertSee($text);
+        }
+    }
+
+    public function test_every_health_worker_sidebar_page_renders(): void
+    {
+        $puskesmas = HealthFacility::factory()->puskesmas()->create();
+        $posyandu = HealthFacility::factory()->create(['parent_id' => $puskesmas->id]);
+        $nakes = User::factory()->tenagaKesehatan()->create(['facility_id' => $puskesmas->id]);
+        $child = Child::factory()->create(['facility_id' => $posyandu->id]);
+        RiskAssessment::factory()->high()->create(['child_id' => $child->id]);
+
+        $pages = [
+            '/tenaga-kesehatan/dashboard' => 'Antrean peninjauan',
+            '/tenaga-kesehatan/peninjauan' => 'Daftar peninjauan',
+            '/anak' => 'Data anak',
+            '/tenaga-kesehatan/analisis' => 'Hasil analisis wilayah',
+            '/tindak-lanjut' => 'Tindak lanjut',
+        ];
+
+        foreach ($pages as $url => $text) {
+            $this->actingAs($nakes)->get($url)->assertOk()->assertSee($text);
+        }
+    }
+
+    public function test_every_puskesmas_sidebar_page_renders(): void
+    {
+        $puskesmas = HealthFacility::factory()->puskesmas()->create();
+        $posyandu = HealthFacility::factory()->create(['parent_id' => $puskesmas->id]);
+        $admin = User::factory()->adminPuskesmas()->create(['facility_id' => $puskesmas->id]);
+        Child::factory()->create(['facility_id' => $posyandu->id]);
+
+        $pages = [
+            '/puskesmas/dashboard' => 'Ringkasan wilayah',
+            '/puskesmas/posyandu' => 'Direktori Posyandu',
+            '/puskesmas/pengguna' => 'Pengguna wilayah',
+            '/puskesmas/laporan' => 'Laporan wilayah',
+            '/puskesmas/pengaturan' => 'Pengaturan wilayah',
+        ];
+
+        foreach ($pages as $url => $text) {
+            $this->actingAs($admin)->get($url)->assertOk()->assertSee($text);
+        }
+    }
+
     public function test_login_page_does_not_expose_technical_jargon(): void
     {
         $response = $this->get('/masuk');

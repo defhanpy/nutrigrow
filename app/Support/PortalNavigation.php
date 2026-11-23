@@ -28,8 +28,8 @@ class PortalNavigation
         return [
             ['label' => 'Dashboard', 'icon' => 'ti-layout-dashboard', 'url' => route('kader.dashboard'), 'active' => ['kader.dashboard']],
             ['label' => 'Data Anak', 'icon' => 'ti-users', 'url' => route('children.index'), 'active' => ['children.index', 'children.show']],
-            ['label' => 'Pengukuran', 'icon' => 'ti-scale', 'url' => route('kader.dashboard').'#pengukuran', 'active' => []],
-            ['label' => 'Analisis Pertumbuhan', 'icon' => 'ti-chart-line', 'url' => route('children.index'), 'active' => []],
+            ['label' => 'Pengukuran', 'icon' => 'ti-scale', 'url' => route('kader.measurements'), 'active' => ['kader.measurements']],
+            ['label' => 'Analisis Pertumbuhan', 'icon' => 'ti-chart-line', 'url' => route('kader.analytics'), 'active' => ['kader.analytics']],
             ['label' => 'Tindak Lanjut', 'icon' => 'ti-clipboard-check', 'url' => route('follow-ups.index'), 'active' => ['follow-ups.index']],
             ['label' => 'Edukasi Gizi', 'icon' => 'ti-salad', 'url' => route('nutrition.index'), 'active' => ['nutrition.index']],
         ];
@@ -42,10 +42,10 @@ class PortalNavigation
     {
         return [
             ['label' => 'Beranda', 'icon' => 'ti-home', 'url' => route('ortu.dashboard'), 'active' => ['ortu.dashboard']],
-            ['label' => 'Pertumbuhan Anak', 'icon' => 'ti-chart-line', 'url' => route('ortu.dashboard').'#pertumbuhan', 'active' => []],
+            ['label' => 'Pertumbuhan Anak', 'icon' => 'ti-chart-line', 'url' => route('ortu.growth'), 'active' => ['ortu.growth']],
             ['label' => 'Edukasi Gizi', 'icon' => 'ti-salad', 'url' => route('nutrition.index'), 'active' => ['nutrition.index']],
-            ['label' => 'Jadwal', 'icon' => 'ti-calendar-event', 'url' => route('ortu.dashboard').'#jadwal', 'active' => []],
-            ['label' => 'Profil', 'icon' => 'ti-user-circle', 'url' => route('ortu.dashboard').'#profil', 'active' => []],
+            ['label' => 'Jadwal', 'icon' => 'ti-calendar-event', 'url' => route('ortu.schedule'), 'active' => ['ortu.schedule']],
+            ['label' => 'Profil', 'icon' => 'ti-user-circle', 'url' => route('profile.show'), 'active' => ['profile.show']],
         ];
     }
 
@@ -56,9 +56,9 @@ class PortalNavigation
     {
         return [
             ['label' => 'Dashboard Review', 'icon' => 'ti-layout-dashboard', 'url' => route('nakes.dashboard'), 'active' => ['nakes.dashboard']],
-            ['label' => 'Daftar Peninjauan', 'icon' => 'ti-alert-triangle', 'url' => route('nakes.dashboard').'#antrean', 'active' => []],
+            ['label' => 'Daftar Peninjauan', 'icon' => 'ti-alert-triangle', 'url' => route('nakes.reviews'), 'active' => ['nakes.reviews']],
             ['label' => 'Profil Anak', 'icon' => 'ti-users', 'url' => route('children.index'), 'active' => ['children.index', 'children.show']],
-            ['label' => 'Hasil Analisis', 'icon' => 'ti-activity', 'url' => route('children.index'), 'active' => []],
+            ['label' => 'Hasil Analisis', 'icon' => 'ti-activity', 'url' => route('nakes.analytics'), 'active' => ['nakes.analytics']],
             ['label' => 'Tindak Lanjut', 'icon' => 'ti-clipboard-check', 'url' => route('follow-ups.index'), 'active' => ['follow-ups.index']],
         ];
     }
@@ -70,10 +70,10 @@ class PortalNavigation
     {
         return [
             ['label' => 'Dashboard Wilayah', 'icon' => 'ti-map-2', 'url' => route('puskesmas.dashboard'), 'active' => ['puskesmas.dashboard']],
-            ['label' => 'Posyandu', 'icon' => 'ti-building-community', 'url' => route('puskesmas.dashboard').'#posyandu', 'active' => []],
-            ['label' => 'Pengguna', 'icon' => 'ti-user-cog', 'url' => route('puskesmas.dashboard').'#pengguna', 'active' => []],
+            ['label' => 'Posyandu', 'icon' => 'ti-building-community', 'url' => route('puskesmas.posyandu'), 'active' => ['puskesmas.posyandu']],
+            ['label' => 'Pengguna', 'icon' => 'ti-user-cog', 'url' => route('puskesmas.users'), 'active' => ['puskesmas.users']],
             ['label' => 'Laporan', 'icon' => 'ti-file-download', 'url' => route('puskesmas.reports'), 'active' => ['puskesmas.reports']],
-            ['label' => 'Pengaturan', 'icon' => 'ti-settings', 'url' => route('puskesmas.dashboard').'#pengaturan', 'active' => []],
+            ['label' => 'Pengaturan', 'icon' => 'ti-settings', 'url' => route('puskesmas.settings'), 'active' => ['puskesmas.settings']],
         ];
     }
 }
