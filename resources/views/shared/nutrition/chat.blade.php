@@ -90,25 +90,6 @@
                     </div>
                 </div>
 
-                {{-- Quick Prompts Strip (Cleanly placed right above input form) --}}
-                <div class="ng-quick-scroll-bar px-3 py-2 border-top">
-                    <button type="button" class="ng-quick-pill js-quick-prompt" data-prompt="Ide menu MPASI 8 bulan tinggi zat besi dan protein hewani murah">
-                        🥣 MPASI 8 Bulan
-                    </button>
-                    <button type="button" class="ng-quick-pill js-quick-prompt" data-prompt="Anak saya sedang GTM susah makan sayur dan nasi, bagaimana solusinya?">
-                        💡 Solusi Anak GTM
-                    </button>
-                    <button type="button" class="ng-quick-pill js-quick-prompt" data-prompt="Apa bahan pangan lokal pengganti ikan salmon yang murah tapi kaya omega 3?">
-                        🐟 Pengganti Salmon
-                    </button>
-                    <button type="button" class="ng-quick-pill js-quick-prompt" data-prompt="Bagaimana cara membaca kurva KMS dan arti garis kuning?">
-                        📈 Cara Baca KMS
-                    </button>
-                    <button type="button" class="ng-quick-pill js-quick-prompt" data-prompt="Kapan anak harus segera dibawa ke dokter saat sedang sakit atau diare?">
-                        🚨 Tanda Bahaya Darurat
-                    </button>
-                </div>
-
                 {{-- Input Form (Sticky at bottom of chat panel) --}}
                 <div class="p-2 p-md-3 border-top" style="background: var(--ng-paper); border-color: var(--ng-border) !important;">
                     <form id="chatForm" method="POST" action="{{ route('nutrition.chat.send') }}" class="d-flex gap-2">
@@ -230,43 +211,6 @@
         margin-top: 3px;
         font-weight: 600;
     }
-    /* Horizontal scroll quick prompt pill bar (above input) */
-    .ng-quick-scroll-bar {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        overflow-x: auto;
-        white-space: nowrap;
-        background: #f1f6f3;
-        padding: 8px 12px;
-        border-top: 1.5px solid #dce8e1;
-        scrollbar-width: none; /* Firefox */
-        -webkit-overflow-scrolling: touch;
-    }
-    .ng-quick-scroll-bar::-webkit-scrollbar {
-        display: none; /* Chrome/Safari */
-    }
-    .ng-quick-pill {
-        display: inline-flex;
-        align-items: center;
-        padding: 5px 12px;
-        font-size: 12px;
-        font-weight: 700;
-        border: 1.5px solid var(--ng-ink);
-        border-radius: 999px;
-        background: var(--ng-paper);
-        color: var(--ng-ink);
-        box-shadow: 1.5px 1.5px 0 var(--ng-ink);
-        cursor: pointer;
-        flex-shrink: 0;
-        transition: all 0.15s ease;
-    }
-    .ng-quick-pill:hover,
-    .ng-quick-pill:focus {
-        background: var(--ng-mint);
-        transform: translate(-1px, -1px);
-        box-shadow: 2.5px 2.5px 0 var(--ng-ink);
-    }
     /* Thinking animation dots */
     .ng-thinking-bubble {
         display: inline-flex;
@@ -305,16 +249,6 @@
             chatStream.scrollTop = chatStream.scrollHeight;
         };
         scrollToBottom();
-
-        // Quick prompts click handler
-        document.querySelectorAll('.js-quick-prompt').forEach(btn => {
-            btn.addEventListener('click', function () {
-                const prompt = this.dataset.prompt;
-                if (!prompt) return;
-                chatInput.value = prompt;
-                chatForm.dispatchEvent(new Event('submit', { cancelable: true }));
-            });
-        });
 
         // AJAX Chat Submission
         chatForm.addEventListener('submit', function (e) {
