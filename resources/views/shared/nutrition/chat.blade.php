@@ -40,26 +40,6 @@
                     @endif
                 </div>
 
-                {{-- Quick Prompts Horizontal Scroll Strip (Mobile-first) --}}
-                <div class="ng-quick-scroll-bar px-3 py-2 border-bottom">
-                    <span class="ng-tiny fw-bold text-muted me-1 flex-shrink-0"><i class="ti ti-bulb text-warning"></i> Tanya:</span>
-                    <button type="button" class="ng-quick-pill js-quick-prompt" data-prompt="Ide menu MPASI 8 bulan tinggi zat besi dan protein hewani murah">
-                        🥣 MPASI 8 Bulan
-                    </button>
-                    <button type="button" class="ng-quick-pill js-quick-prompt" data-prompt="Anak saya sedang GTM susah makan sayur dan nasi, bagaimana solusinya?">
-                        💡 Solusi Anak GTM
-                    </button>
-                    <button type="button" class="ng-quick-pill js-quick-prompt" data-prompt="Apa bahan pangan lokal pengganti ikan salmon yang murah tapi kaya omega 3?">
-                        🐟 Pengganti Salmon
-                    </button>
-                    <button type="button" class="ng-quick-pill js-quick-prompt" data-prompt="Bagaimana cara membaca kurva KMS dan arti garis kuning?">
-                        📈 Cara Baca KMS
-                    </button>
-                    <button type="button" class="ng-quick-pill js-quick-prompt" data-prompt="Kapan anak harus segera dibawa ke dokter saat sedang sakit atau diare?">
-                        🚨 Tanda Bahaya Darurat
-                    </button>
-                </div>
-
                 {{-- Message History Stream --}}
                 <div class="flex-grow-1 p-3 overflow-y-auto" id="chatStream" style="background: #fafcfb;">
                     {{-- Intro Greeting if empty --}}
@@ -108,6 +88,25 @@
                             <span class="ng-tiny text-muted ms-2 fw-semibold">NutriBot sedang menyusun jawaban...</span>
                         </div>
                     </div>
+                </div>
+
+                {{-- Quick Prompts Strip (Cleanly placed right above input form) --}}
+                <div class="ng-quick-scroll-bar px-3 py-2 border-top">
+                    <button type="button" class="ng-quick-pill js-quick-prompt" data-prompt="Ide menu MPASI 8 bulan tinggi zat besi dan protein hewani murah">
+                        🥣 MPASI 8 Bulan
+                    </button>
+                    <button type="button" class="ng-quick-pill js-quick-prompt" data-prompt="Anak saya sedang GTM susah makan sayur dan nasi, bagaimana solusinya?">
+                        💡 Solusi Anak GTM
+                    </button>
+                    <button type="button" class="ng-quick-pill js-quick-prompt" data-prompt="Apa bahan pangan lokal pengganti ikan salmon yang murah tapi kaya omega 3?">
+                        🐟 Pengganti Salmon
+                    </button>
+                    <button type="button" class="ng-quick-pill js-quick-prompt" data-prompt="Bagaimana cara membaca kurva KMS dan arti garis kuning?">
+                        📈 Cara Baca KMS
+                    </button>
+                    <button type="button" class="ng-quick-pill js-quick-prompt" data-prompt="Kapan anak harus segera dibawa ke dokter saat sedang sakit atau diare?">
+                        🚨 Tanda Bahaya Darurat
+                    </button>
                 </div>
 
                 {{-- Input Form (Sticky at bottom of chat panel) --}}
@@ -231,28 +230,27 @@
         margin-top: 3px;
         font-weight: 600;
     }
-    /* Horizontal scroll quick prompt pill bar */
+    /* Horizontal scroll quick prompt pill bar (above input) */
     .ng-quick-scroll-bar {
         display: flex;
         align-items: center;
-        gap: 6px;
+        gap: 8px;
         overflow-x: auto;
         white-space: nowrap;
-        background: #f5f8f6;
+        background: #f1f6f3;
+        padding: 8px 12px;
+        border-top: 1.5px solid #dce8e1;
+        scrollbar-width: none; /* Firefox */
         -webkit-overflow-scrolling: touch;
     }
     .ng-quick-scroll-bar::-webkit-scrollbar {
-        height: 4px;
-    }
-    .ng-quick-scroll-bar::-webkit-scrollbar-thumb {
-        background: #b9cdc2;
-        border-radius: 4px;
+        display: none; /* Chrome/Safari */
     }
     .ng-quick-pill {
         display: inline-flex;
         align-items: center;
-        padding: 3px 10px;
-        font-size: 11.5px;
+        padding: 5px 12px;
+        font-size: 12px;
         font-weight: 700;
         border: 1.5px solid var(--ng-ink);
         border-radius: 999px;
