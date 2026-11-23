@@ -49,7 +49,10 @@ class AuthenticatedSessionController extends Controller
             ]);
         }
 
-        return redirect()->intended(route($user->homeRoute()));
+        // Clear any stale intended URL to prevent role collision during demo transitions
+        $request->session()->forget('url.intended');
+
+        return redirect()->route($user->homeRoute());
     }
 
     public function destroy(Request $request): RedirectResponse
