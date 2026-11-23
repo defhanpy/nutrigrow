@@ -67,6 +67,7 @@
                 <table class="table align-middle">
                     <thead>
                     <tr>
+                        <th style="width: 50px;">No.</th>
                         <th>Balita</th>
                         <th>Posyandu</th>
                         <th>Temuan</th>
@@ -79,6 +80,7 @@
                     <tbody>
                     @foreach ($risks as $risk)
                         <tr>
+                            <td class="ng-small text-muted">{{ $risks->firstItem() ? $risks->firstItem() + $loop->index : $loop->iteration }}</td>
                             <td>
                                 <div class="d-flex align-items-center gap-2">
                                     <x-child-avatar :child="$risk->child" />

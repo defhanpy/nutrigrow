@@ -66,6 +66,7 @@
             <table class="table align-middle">
                 <thead>
                 <tr>
+                    <th style="width: 50px;">No.</th>
                     <th>Tanggal</th>
                     <th>Balita</th>
                     <th>Usia saat ukur</th>
@@ -79,6 +80,7 @@
                 <tbody>
                 @forelse ($measurements as $measurement)
                     <tr>
+                        <td class="ng-small text-muted">{{ $measurements->firstItem() ? $measurements->firstItem() + $loop->index : $loop->iteration }}</td>
                         <td class="ng-small ng-nowrap">{{ $measurement->measured_at->translatedFormat('d M Y') }}</td>
                         <td>
                             <div class="d-flex align-items-center gap-2">
@@ -102,7 +104,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="8">
+                        <td colspan="9">
                             <x-empty-state icon="ti-scale" title="Belum ada pengukuran" description="Catat penimbangan pertama lewat tombol ukur di atas." />
                         </td>
                     </tr>

@@ -1123,7 +1123,44 @@ button:focus-visible,
     }
 }
 
-/* ---------- Select2 Neubrutalism Override ---------- */
+/* ---------- Pagination Neubrutalism Override ---------- */
+.pagination {
+    gap: 6px;
+    margin-bottom: 0;
+}
+
+.pagination .page-item .page-link {
+    border: var(--ng-border);
+    border-radius: 8px !important;
+    background: var(--ng-paper);
+    color: var(--ng-ink);
+    font-weight: 700;
+    font-size: 13px;
+    padding: 6px 14px;
+    box-shadow: 2px 2px 0 var(--ng-ink);
+    transition: all 0.15s ease-in-out;
+}
+
+.pagination .page-item .page-link:hover {
+    background: var(--ng-mint);
+    color: var(--ng-ink);
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0 var(--ng-ink);
+}
+
+.pagination .page-item.active .page-link {
+    background: var(--ng-lime) !important;
+    color: var(--ng-ink) !important;
+    border-color: var(--ng-ink) !important;
+    box-shadow: 2px 2px 0 var(--ng-ink);
+}
+
+.pagination .page-item.disabled .page-link {
+    opacity: 0.55;
+    background: var(--ng-mint-soft);
+    box-shadow: none;
+    border-color: #9cb5a8;
+}
 .select2-container .select2-selection--single {
     height: 44px;
     border: var(--ng-border) !important;

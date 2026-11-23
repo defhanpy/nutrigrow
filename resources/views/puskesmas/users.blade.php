@@ -51,6 +51,7 @@
             <table class="table align-middle">
                 <thead>
                 <tr>
+                    <th style="width: 50px;">No.</th>
                     <th>Nama</th>
                     <th>Peran</th>
                     <th>Fasilitas</th>
@@ -61,6 +62,7 @@
                 <tbody>
                 @forelse ($users as $user)
                     <tr>
+                        <td class="ng-small text-muted">{{ $users->firstItem() ? $users->firstItem() + $loop->index : $loop->iteration }}</td>
                         <td>
                             <div class="d-flex align-items-center gap-2">
                                 <span class="ng-avatar ng-avatar-sm">{{ $user->initials() }}</span>
@@ -84,7 +86,7 @@
                         </td>
                     </tr>
                 @empty
-                    <tr><td colspan="5"><x-empty-state icon="ti-users" title="Tidak ada akun" description="Ubah filter peran untuk melihat akun lain." /></td></tr>
+                    <tr><td colspan="6"><x-empty-state icon="ti-users" title="Tidak ada akun" description="Ubah filter peran untuk melihat akun lain." /></td></tr>
                 @endforelse
                 </tbody>
             </table>

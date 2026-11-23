@@ -17,6 +17,7 @@
             <table class="table align-middle">
                 <thead>
                 <tr>
+                    <th style="width: 50px;">No.</th>
                     <th>Balita</th>
                     <th>Usia</th>
                     <th>Posyandu</th>
@@ -29,6 +30,7 @@
                 @forelse ($children as $child)
                     @php($latest = $child->latestMeasurement?->assessment)
                     <tr>
+                        <td class="ng-small text-muted">{{ $children->firstItem() ? $children->firstItem() + $loop->index : $loop->iteration }}</td>
                         <td>
                             <div class="d-flex align-items-center gap-2">
                                 <x-child-avatar :child="$child" />
@@ -49,7 +51,7 @@
                         </td>
                     </tr>
                 @empty
-                    <tr><td colspan="6"><x-empty-state icon="ti-users" title="Balita tidak ditemukan" description="Coba kata kunci lain atau hubungi kader Posyandu." /></td></tr>
+                    <tr><td colspan="7"><x-empty-state icon="ti-users" title="Balita tidak ditemukan" description="Coba kata kunci lain atau hubungi kader Posyandu." /></td></tr>
                 @endforelse
                 </tbody>
             </table>

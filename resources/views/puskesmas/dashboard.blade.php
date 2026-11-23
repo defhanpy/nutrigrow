@@ -42,6 +42,7 @@
                     <table class="table align-middle">
                         <thead>
                         <tr>
+                            <th style="width: 45px;">No.</th>
                             <th>Posyandu</th>
                             <th class="text-end">Sasaran</th>
                             <th class="text-end">Ditimbang</th>
@@ -54,6 +55,7 @@
                         <tbody>
                         @forelse ($posyandu as $row)
                             <tr>
+                                <td class="ng-small text-muted">{{ $loop->iteration }}</td>
                                 <td>
                                     <div class="fw-bold ng-small">{{ $row['name'] }}</div>
                                     <div class="ng-tiny ng-muted">{{ $row['code'] }}</div>
@@ -73,7 +75,7 @@
                                 <td class="text-end"><span class="badge {{ $row['open_alerts'] > 0 ? 'ng-badge-watch' : 'ng-badge-good' }}">{{ $row['open_alerts'] }}</span></td>
                             </tr>
                         @empty
-                            <tr><td colspan="7" class="ng-small ng-muted text-center py-3">Belum ada Posyandu pada wilayah ini.</td></tr>
+                            <tr><td colspan="8" class="ng-small ng-muted text-center py-3">Belum ada Posyandu pada wilayah ini.</td></tr>
                         @endforelse
                         </tbody>
                     </table>

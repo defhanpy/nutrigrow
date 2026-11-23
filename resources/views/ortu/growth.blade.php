@@ -108,6 +108,7 @@
                             <table class="table align-middle">
                                 <thead>
                                 <tr>
+                                    <th style="width: 45px;">No.</th>
                                     <th>Tanggal</th>
                                     <th>Usia</th>
                                     <th>Berat</th>
@@ -118,6 +119,7 @@
                                 <tbody>
                                 @foreach ($measurements as $measurement)
                                     <tr>
+                                        <td class="ng-small text-muted">{{ $loop->iteration }}</td>
                                         <td class="ng-small ng-nowrap">{{ $measurement->measured_at->translatedFormat('d M Y') }}</td>
                                         <td class="ng-small">{{ $selectedChild->ageLabel($measurement->measured_at) }}</td>
                                         <td class="ng-small">{{ $measurement->weight_kg }} kg</td>

@@ -24,6 +24,7 @@
             <table class="table align-middle">
                 <thead>
                 <tr>
+                    <th style="width: 45px;">No.</th>
                     <th>Posyandu</th>
                     <th class="text-end">Sasaran</th>
                     <th class="text-end">Ditimbang</th>
@@ -36,6 +37,7 @@
                 <tbody>
                 @foreach ($posyandu as $row)
                     <tr>
+                        <td class="ng-small text-muted">{{ $loop->iteration }}</td>
                         <td><div class="fw-bold ng-small">{{ $row['name'] }}</div><div class="ng-tiny ng-muted">{{ $row['code'] }}</div></td>
                         <td class="text-end ng-small">{{ $row['total_target'] }}</td>
                         <td class="text-end ng-small">{{ $row['measured'] }}</td>

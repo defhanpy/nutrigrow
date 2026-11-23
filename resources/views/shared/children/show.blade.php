@@ -30,6 +30,7 @@
                     <table class="table align-middle">
                         <thead>
                         <tr>
+                            <th style="width: 45px;">No.</th>
                             <th>Tanggal</th>
                             <th>Usia</th>
                             <th>Berat</th>
@@ -42,6 +43,7 @@
                         <tbody>
                         @foreach ($measurements as $measurement)
                             <tr>
+                                <td class="ng-small text-muted">{{ $loop->iteration }}</td>
                                 <td class="ng-small ng-nowrap">{{ $measurement->measured_at->translatedFormat('d M Y') }}</td>
                                 <td class="ng-small">{{ $measurement->assessment?->age_in_days ? floor($measurement->assessment->age_in_days / 30.4375).' bln' : '—' }}</td>
                                 <td class="ng-small">{{ $measurement->weight_kg }} kg</td>

@@ -66,6 +66,7 @@
                     <table class="table align-middle">
                         <thead>
                         <tr>
+                            <th style="width: 45px;">No.</th>
                             <th>Posyandu</th>
                             <th>Kode</th>
                             <th>Alamat</th>
@@ -75,6 +76,7 @@
                         <tbody>
                         @forelse ($posyandu as $entry)
                             <tr>
+                                <td class="ng-small text-muted">{{ $loop->iteration }}</td>
                                 <td class="ng-small fw-bold">{{ $entry->name }}</td>
                                 <td class="ng-small">{{ $entry->code }}</td>
                                 <td class="ng-small">{{ $entry->address }}</td>
@@ -83,7 +85,7 @@
                                 </td>
                             </tr>
                         @empty
-                            <tr><td colspan="4" class="ng-small ng-muted text-center py-3">Belum ada Posyandu pada wilayah ini.</td></tr>
+                            <tr><td colspan="5" class="ng-small ng-muted text-center py-3">Belum ada Posyandu pada wilayah ini.</td></tr>
                         @endforelse
                         </tbody>
                     </table>

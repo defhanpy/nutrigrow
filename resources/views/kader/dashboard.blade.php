@@ -150,17 +150,18 @@
                 <h6 class="ng-panel-title"><i class="ti ti-list-check"></i> Pengukuran terbaru</h6>
                 <div class="table-responsive">
                     <table class="table align-middle">
-                        <thead><tr><th>Balita</th><th>Tanggal</th><th>Berat</th><th>Status</th></tr></thead>
+                        <thead><tr><th style="width: 45px;">No.</th><th>Balita</th><th>Tanggal</th><th>Berat</th><th>Status</th></tr></thead>
                         <tbody>
                         @forelse ($recentMeasurements as $measurement)
                             <tr>
+                                <td class="ng-small text-muted">{{ $loop->iteration }}</td>
                                 <td class="ng-small fw-bold">{{ $measurement->child->full_name }}</td>
                                 <td class="ng-small ng-nowrap">{{ $measurement->measured_at->translatedFormat('d M') }}</td>
                                 <td class="ng-small">{{ $measurement->weight_kg }} kg</td>
                                 <td><x-status-badge :status="$measurement->assessment?->overall_status" /></td>
                             </tr>
                         @empty
-                            <tr><td colspan="4" class="ng-small ng-muted text-center py-3">Belum ada pengukuran.</td></tr>
+                            <tr><td colspan="5" class="ng-small ng-muted text-center py-3">Belum ada pengukuran.</td></tr>
                         @endforelse
                         </tbody>
                     </table>
