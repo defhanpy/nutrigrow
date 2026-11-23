@@ -50,7 +50,7 @@ class ChildController extends Controller
             'trajectory' => $this->growthEngine->evaluateTrajectory($child),
             'nutrition' => $this->nutrition->recommendForChild($child, $assessment),
             'assessment' => $assessment,
-            'measurements' => $child->measurements()->with('assessment')->latest('measured_at')->get(),
+            'measurements' => $child->measurements()->with('assessment')->latest('measured_at')->paginate(10)->withQueryString(),
         ]);
     }
 }

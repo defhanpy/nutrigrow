@@ -28,7 +28,8 @@ class GrowthController extends Controller
         $measurements = $selected?->measurements()
             ->with('assessment')
             ->latest('measured_at')
-            ->get() ?? collect();
+            ->paginate(10)
+            ->withQueryString() ?? new \Illuminate\Pagination\LengthAwarePaginator([], 0, 10);
 
         return view('ortu.growth', [
             'children' => $children,

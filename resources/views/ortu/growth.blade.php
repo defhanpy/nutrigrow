@@ -99,7 +99,7 @@
                 <div class="ng-panel mt-3">
                     <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
                         <h6 class="ng-panel-title mb-0"><i class="ti ti-history"></i> Riwayat penimbangan</h6>
-                        <span class="badge badge-soft-secondary">{{ $measurements->count() }} kunjungan</span>
+                        <span class="badge badge-soft-secondary">{{ $measurements->total() }} kunjungan</span>
                     </div>
                     @if ($measurements->isEmpty())
                         <x-empty-state icon="ti-scale" title="Belum ada pengukuran" description="Riwayat kunjungan akan tampil di sini." />
@@ -119,7 +119,7 @@
                                 <tbody>
                                 @foreach ($measurements as $measurement)
                                     <tr>
-                                        <td class="ng-small text-muted">{{ $loop->iteration }}</td>
+                                        <td class="ng-small text-muted">{{ $measurements->firstItem() ? $measurements->firstItem() + $loop->index : $loop->iteration }}</td>
                                         <td class="ng-small ng-nowrap">{{ $measurement->measured_at->translatedFormat('d M Y') }}</td>
                                         <td class="ng-small">{{ $selectedChild->ageLabel($measurement->measured_at) }}</td>
                                         <td class="ng-small">{{ $measurement->weight_kg }} kg</td>
@@ -130,6 +130,9 @@
                                 </tbody>
                             </table>
                         </div>
+                        @if ($measurements->hasPages())
+                            <div class="mt-3">{{ $measurements->links() }}</div>
+                        @endif
                     @endif
                 </div>
             </div>

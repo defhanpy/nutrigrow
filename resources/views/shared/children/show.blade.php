@@ -43,7 +43,7 @@
                         <tbody>
                         @foreach ($measurements as $measurement)
                             <tr>
-                                <td class="ng-small text-muted">{{ $loop->iteration }}</td>
+                                <td class="ng-small text-muted">{{ $measurements->firstItem() ? $measurements->firstItem() + $loop->index : $loop->iteration }}</td>
                                 <td class="ng-small ng-nowrap">{{ $measurement->measured_at->translatedFormat('d M Y') }}</td>
                                 <td class="ng-small">{{ $measurement->assessment?->age_in_days ? floor($measurement->assessment->age_in_days / 30.4375).' bln' : '—' }}</td>
                                 <td class="ng-small">{{ $measurement->weight_kg }} kg</td>
@@ -56,6 +56,9 @@
                         </tbody>
                     </table>
                 </div>
+                @if ($measurements->hasPages())
+                    <div class="mt-3">{{ $measurements->links() }}</div>
+                @endif
             </div>
         </div>
 
