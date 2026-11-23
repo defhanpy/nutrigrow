@@ -19,7 +19,7 @@
                 <img src="{{ asset('images/nutrigrow-mark.png') }}" alt="Logo NUTRIGROW" class="ng-brand-icon">
                 <div class="ng-brand-text">
                     <span class="ng-brand-name">NUTRIGROW</span>
-                    <small class="ng-brand-badge">Kemenkes RI · Posyandu</small>
+                    <small class="ng-brand-badge">Standar WHO · Posyandu Komunitas</small>
                 </div>
             </a>
             <h1>Setiap anak tumbuh,<br>setiap keluarga terlibat.</h1>

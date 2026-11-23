@@ -1,6 +1,6 @@
 # NUTRIGROW — AI-Powered Child Growth & Nutrition Intelligence
 
-Platform terintegrasi pemantauan tumbuh kembang anak standar WHO, analisis pola pertumbuhan longitudinal (*Growth Intelligence Loop*), edukasi gizi pangan lokal, dan kolaborasi 4 pilar layanan: Kader Posyandu, Orang Tua, Tenaga Kesehatan (Bidan/Dokter), serta Administrator Puskesmas.
+Platform pemantauan tumbuh kembang anak berbasis standar WHO, analisis pola pertumbuhan longitudinal (*Growth Intelligence Loop*), edukasi gizi pangan lokal, dan kolaborasi 4 pilar layanan: Kader Posyandu, Orang Tua, Tenaga Kesehatan (Bidan/Dokter), serta Administrator Puskesmas.
 
 Karya inovasi teknologi kesehatan diajukan untuk **IT RUSH 2026** (Kategori Web Development — Subtema: Kesehatan Masyarakat) diselenggarakan oleh HIMATIF Universitas Bengkulu.
 

@@ -34,7 +34,7 @@
                 <img src="{{ asset('images/nutrigrow-mark.png') }}" alt="Logo NUTRIGROW" class="ng-brand-icon">
                 <div class="ng-brand-text">
                     <span class="ng-brand-name">NUTRIGROW</span>
-                    <small class="ng-brand-badge">Kemenkes RI · Posyandu</small>
+                    <small class="ng-brand-badge">Standar WHO · Posyandu Komunitas</small>
                 </div>
             </a>
             <button class="button-close-fullsidebar d-lg-none" type="button" aria-label="Tutup menu navigasi">
@@ -77,7 +77,7 @@
                 </button>
                 <div class="ng-topbar-context">
                     <div>
-                        <div class="ng-org">Kementerian Kesehatan RI · Posyandu Terintegrasi</div>
+                        <div class="ng-org">Standar Antropometri WHO · Layanan Posyandu</div>
                         <div class="ng-portal">{{ $portalTitle }} — {{ $user->facility?->name ?? 'Layanan Posyandu' }}</div>
                     </div>
                 </div>
@@ -121,10 +121,10 @@
         </div>
         <footer class="ng-footer">
             <div>
-                <strong>NUTRIGROW</strong> — Layanan Posyandu Terintegrasi · Kementerian Kesehatan RI
+                <strong>NUTRIGROW</strong> — Pemantauan Pertumbuhan &amp; Gizi Balita Berbasis Komunitas
             </div>
             <div>
-                <i class="ti ti-shield-heart" aria-hidden="true"></i> Alat bantu pemantauan, bukan pengganti pemeriksaan tenaga kesehatan.
+                <i class="ti ti-shield-heart" aria-hidden="true"></i> Alat bantu pemantauan standar WHO, bukan pengganti pemeriksaan tenaga kesehatan.
             </div>
         </footer>
     </main>

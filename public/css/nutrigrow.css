@@ -76,9 +76,9 @@ a { color: var(--ng-forest-deep); }
     width: 38px;
     height: 38px;
     border-radius: 8px;
-    border: 2px solid #fff;
-    background: #fff;
-    padding: 2px;
+    border: 2px solid var(--ng-ink);
+    background: #1e6542;
+    padding: 3px;
     box-shadow: 2px 2px 0 var(--ng-ink);
     flex-shrink: 0;
     object-fit: contain;
@@ -766,9 +766,12 @@ a { color: var(--ng-forest-deep); }
 }
 
 .ng-auth-side .ng-brand-icon {
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
     border-radius: 10px;
+    border: 2px solid var(--ng-ink);
+    background: #1e6542;
+    padding: 4px;
     box-shadow: 3px 3px 0 var(--ng-ink);
 }
 
